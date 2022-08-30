@@ -65,6 +65,7 @@
     <Compile Include="Assets\01.Main\Script\Popup\Popup_OkCancel.cs" />
     <Compile Include="Assets\01.Main\Script\TitleController.cs" />
     <Compile Include="Assets\01.Main\Script\Util\CameraResolution.cs" />
+    <Compile Include="Assets\01.Main\Script\Util\GameObjectPool.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonDontDestroy.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonMonoBehavior.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
