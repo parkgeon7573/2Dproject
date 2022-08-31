@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonMonoBehavior<T> : MonoBehaviour where T : SingletonMonoBehavior<T>
+public class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBehaviour<T>
 {
     protected virtual void OnAwake() { }
     protected virtual void Onstart() { }

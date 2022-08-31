@@ -58,8 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\01.Main\Script\Game\BGController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\HeroController.cs" />
+    <Compile Include="Assets\01.Main\Script\Game\MonsterController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\ProjectileController.cs" />
     <Compile Include="Assets\01.Main\Script\Manager\LoadSceneManager.cs" />
+    <Compile Include="Assets\01.Main\Script\Manager\MonsterManager.cs" />
     <Compile Include="Assets\01.Main\Script\Manager\PopupManager.cs" />
     <Compile Include="Assets\01.Main\Script\Popup\Popup_Ok.cs" />
     <Compile Include="Assets\01.Main\Script\Popup\Popup_OkCancel.cs" />

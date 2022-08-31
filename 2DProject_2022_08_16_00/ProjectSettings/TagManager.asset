@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Background_Top
+  - Background_Left
+  - Background_Right
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 

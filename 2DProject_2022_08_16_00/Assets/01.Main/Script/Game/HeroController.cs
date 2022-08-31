@@ -18,6 +18,7 @@ public class HeroController : MonoBehaviour
     float m_speed = 2f;
     bool m_isDrag;
     Vector3 m_startPos;
+    Vector3 m_prevPos;
     public void RemoveProjectile(ProjectileController projectile)
     {
         projectile.gameObject.SetActive(false);
@@ -61,7 +62,16 @@ public class HeroController : MonoBehaviour
             var endPos = m_mainCamera.ScreenToWorldPoint(Input.mousePosition);
             m_dir = endPos - m_startPos;
             m_dir.y = 0f;
+            m_prevPos = transform.position;
             transform.position += (Vector3)m_dir;
+            var dir = transform.position - m_prevPos;
+            var hit = Physics2D.Raycast(m_prevPos, dir.normalized, Mathf.Abs(dir.x), 1 << LayerMask.NameToLayer("Background"));
+            if(hit.collider != null)
+            {
+                if(dir.x < 0f && !hit.collider.CompareTag("Background_Right")||
+                    dir.x > 0f && !hit.collider.CompareTag("Background_Left"))
+                transform.position = hit.point;
+            }
             m_startPos = endPos;
 
             /*var viewPoint = m_mainCamera.WorldToViewportPoint(transform.position);
