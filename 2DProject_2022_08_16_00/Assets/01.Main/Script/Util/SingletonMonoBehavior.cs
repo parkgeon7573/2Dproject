@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBehaviour<T>
 {
-    protected virtual void OnAwake() { }
-    protected virtual void Onstart() { }
-    public static T Instance { get; private set; }
 
+    public static T Instance { get; private set; }
+    protected virtual void OnAwake() { }
+    protected virtual void OnStart() { }
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = (T)this;
             OnAwake();
@@ -23,10 +23,9 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBe
     // Start is called before the first frame update
     void Start()
     {
-        if(Instance == (T)this)
+        if (Instance == (T)this)
         {
-            Onstart();
+            OnStart();
         }
     }
-
 }

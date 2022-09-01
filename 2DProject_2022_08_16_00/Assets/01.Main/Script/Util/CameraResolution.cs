@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
+[ExecuteInEditMode]
 public class CameraResolution : MonoBehaviour
 {
     public enum ClearMode
