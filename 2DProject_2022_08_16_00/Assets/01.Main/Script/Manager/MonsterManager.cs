@@ -15,12 +15,16 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
     }
     [SerializeField]
     GameObject[] m_monsterPrefabs;
+    List<MonsterController> m_monsterList = new List<MonsterController>();
     Dictionary<MonsterType,GameObjectPool<MonsterController>> m_monsterPool = new Dictionary<MonsterType, GameObjectPool<MonsterController>>();
     Vector2 m_startPos = new Vector2(-2.7f, 6f);
     float m_posGap = 1.35f;
     public void RemoveMonster(MonsterController mon)
-    {
-        m_monsterPool[mon.Type].Set(mon);
+    { 
+        if (m_monsterList.Remove(mon)) 
+        {
+            m_monsterPool[mon.Type].Set(mon);
+        }
         mon.gameObject.SetActive(false);
     }
     
@@ -36,16 +40,17 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
         var mon = m_monsterPool[(MonsterType)Random.Range((int)MonsterType.White, (int)MonsterType.Max)].Get();
         mon.transform.position = pos;
         mon.gameObject.SetActive(true);
+        m_monsterList.Add(mon);
     }
     // Start is called before the first frame update
     protected override void OnStart()
     {
         m_monsterPrefabs = Resources.LoadAll<GameObject>("Prefab/Monster");
-        MonsterType type;
+        
         foreach (var prefab in m_monsterPrefabs)
         {
             var results = prefab.name.Split('.');
-            type = (MonsterType)(int.Parse(results[0]) - 1);
+            MonsterType type = (MonsterType)(int.Parse(results[0]) - 1);
             GameObjectPool<MonsterController> pool = new GameObjectPool<MonsterController>(2, () =>
             {
                 var obj = Instantiate(prefab);
@@ -72,6 +77,9 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i = 0; i< m_monsterList.Count; i++)
+        {
+            m_monsterList[i].Move();
+        }
     }
 }

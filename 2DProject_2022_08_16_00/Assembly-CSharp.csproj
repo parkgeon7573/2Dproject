@@ -60,6 +60,7 @@
     <Compile Include="Assets\01.Main\Script\Game\HeroController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\MonsterController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\ProjectileController.cs" />
+    <Compile Include="Assets\01.Main\Script\Manager\EffectPool.cs" />
     <Compile Include="Assets\01.Main\Script\Manager\LoadSceneManager.cs" />
     <Compile Include="Assets\01.Main\Script\Manager\MonsterManager.cs" />
     <Compile Include="Assets\01.Main\Script\Manager\PopupManager.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\01.Main\Script\Util\GameObjectPool.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonDontDestroy.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonMonoBehavior.cs" />
+    <Compile Include="Assets\01.Main\Script\Util\VfxController.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />

@@ -13,6 +13,10 @@ public class MonsterController : MonoBehaviour
     float m_speed = 1.5f;
     int m_hp;
     public MonsterManager.MonsterType Type { get { return m_type; } set { m_type = value; } }
+    public void Move()
+    {
+        transform.position += m_dir * m_speed * Time.deltaTime;
+    }
     public void SetDamage(int damage)
     {
         m_animator.Play("Hit", 0, 0f);
@@ -23,6 +27,7 @@ public class MonsterController : MonoBehaviour
         m_hp -= damage;
         if(m_hp <= 0)
         {
+            EffectPool.Instance.CreateEffect(transform.position);
             MonsterManager.Instance.RemoveMonster(this);
         }
     }
@@ -49,19 +54,12 @@ public class MonsterController : MonoBehaviour
     }
     void OnEnable()
     {
-        m_hp = 10;
+        m_hp = (int)(m_type + 1) + 1;
         SetDefaultEyes();
     }
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {        
         m_animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += m_dir * m_speed * Time.deltaTime;
     }
 }
