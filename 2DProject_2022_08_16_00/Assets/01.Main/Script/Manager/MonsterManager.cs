@@ -11,6 +11,7 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
         White,
         Yellow,
         Pink,
+        Bomb,
         Max
     }
     [SerializeField]

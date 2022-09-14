@@ -28,6 +28,7 @@ public class MonsterController : MonoBehaviour
         if(m_hp <= 0)
         {
             EffectPool.Instance.CreateEffect(transform.position);
+            InGameItemManager.Instance.CreateItem(transform.position);
             MonsterManager.Instance.RemoveMonster(this);
         }
     }
