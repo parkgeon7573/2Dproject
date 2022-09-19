@@ -31,6 +31,14 @@ public class HeroController : MonoBehaviour
         projectile.gameObject.SetActive(true);
         projectile.transform.position = m_firepos.position;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("item"))
+        {
+            var item = collision.GetComponent<InGameItemController>();
+            InGameItemManager.Instance.RemoveItem(item);
+        }
+    }
     void Start()
     {
         m_mainCamera = Camera.main;

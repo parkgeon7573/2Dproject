@@ -11,11 +11,18 @@ public class MonsterController : MonoBehaviour
     MonsterManager.MonsterType m_type;
     [SerializeField]
     float m_speed = 1.5f;
+    uint m_line;
     int m_hp;
     public MonsterManager.MonsterType Type { get { return m_type; } set { m_type = value; } }
+    public uint Line { get { return m_line; } set { m_line = value; } }
     public void Move()
     {
         transform.position += m_dir * m_speed * Time.deltaTime;
+    }
+    public void SetDie()
+    {
+        EffectPool.Instance.CreateEffect(transform.position);
+        InGameItemManager.Instance.CreateItem(transform.position);
     }
     public void SetDamage(int damage)
     {
@@ -27,9 +34,15 @@ public class MonsterController : MonoBehaviour
         m_hp -= damage;
         if(m_hp <= 0)
         {
-            EffectPool.Instance.CreateEffect(transform.position);
-            InGameItemManager.Instance.CreateItem(transform.position);
-            MonsterManager.Instance.RemoveMonster(this);
+            if(Type == MonsterManager.MonsterType.Bomb)
+            {
+                MonsterManager.Instance.RemoveMonsters(Line);
+            }
+            else
+            {
+                SetDie();
+                MonsterManager.Instance.RemoveMonster(this);
+            }            
         }
     }
     void SetDefaultEyes()

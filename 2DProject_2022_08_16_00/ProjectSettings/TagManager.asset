@@ -9,6 +9,7 @@ TagManager:
   - Background_Right
   - Background_Bottom
   - Monster
+  - item
   layers:
   - Default
   - TransparentFX
