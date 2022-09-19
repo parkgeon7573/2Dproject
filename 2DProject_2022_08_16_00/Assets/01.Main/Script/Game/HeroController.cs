@@ -36,6 +36,7 @@ public class HeroController : MonoBehaviour
         if (collision.CompareTag("item"))
         {
             var item = collision.GetComponent<InGameItemController>();
+            item.SetItemEffect();
             InGameItemManager.Instance.RemoveItem(item);
         }
     }

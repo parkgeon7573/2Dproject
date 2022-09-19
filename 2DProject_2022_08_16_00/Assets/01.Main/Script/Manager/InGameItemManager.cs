@@ -21,6 +21,7 @@ public class InGameItemManager : SingletonMonoBehaviour<InGameItemManager>
     GameObjectPool<InGameItemController> m_itemPool;
     [SerializeField]
     List<Sprite> m_iconSprites;
+    int[] m_itemTable = { 91, 3, 2, 1, 1, 2 };
     public void RemoveItem(InGameItemController item)
     {
         m_itemPool.Set(item);
@@ -28,7 +29,7 @@ public class InGameItemManager : SingletonMonoBehaviour<InGameItemManager>
     }
     public void CreateItem(Vector3 pos)
     {
-        var type = (ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
+        var type = (ItemType)Util.GetPriority(m_itemTable);//(ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
 
         var item = m_itemPool.Get();
         item.gameObject.SetActive(true);

@@ -39,6 +39,27 @@ public class InGameItemController : MonoBehaviour
         m_sprRenderer.sprite =  icon;
         transform.localRotation = Quaternion.identity;
     }
+    public void SetItemEffect()
+    {
+        switch (m_type)
+        {
+            case InGameItemManager.ItemType.Coin:
+                SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_coin);
+                break;
+            case InGameItemManager.ItemType.Gem_Blue:
+            case InGameItemManager.ItemType.Gem_Red:
+            case InGameItemManager.ItemType.Gem_Green:
+                SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_gem);
+                break;
+            case InGameItemManager.ItemType.Invincible:
+                SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_invincible);
+                break;
+            case InGameItemManager.ItemType.Magnet:
+                SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_item);
+                break;
+
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

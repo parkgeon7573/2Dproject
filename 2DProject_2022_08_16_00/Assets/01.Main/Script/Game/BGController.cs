@@ -10,6 +10,7 @@ public class BGController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.Instance.PlayBGM(SoundManager.BgmList.dragon_flight);
         m_sprRenderer = GetComponent<SpriteRenderer>();
     }
 

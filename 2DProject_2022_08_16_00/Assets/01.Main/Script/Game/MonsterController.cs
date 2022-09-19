@@ -21,6 +21,7 @@ public class MonsterController : MonoBehaviour
     }
     public void SetDie()
     {
+        SoundManager.Instance.PlaySFX(SoundManager.SfxList.mon_die);
         EffectPool.Instance.CreateEffect(transform.position);
         InGameItemManager.Instance.CreateItem(transform.position);
     }

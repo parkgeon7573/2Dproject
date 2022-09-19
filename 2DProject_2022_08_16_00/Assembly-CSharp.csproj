@@ -73,6 +73,8 @@
     <Compile Include="Assets\01.Main\Script\Util\GameObjectPool.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonDontDestroy.cs" />
     <Compile Include="Assets\01.Main\Script\Util\SingletonMonoBehavior.cs" />
+    <Compile Include="Assets\01.Main\Script\Util\SoundManager.cs" />
+    <Compile Include="Assets\01.Main\Script\Util\Util.cs" />
     <Compile Include="Assets\01.Main\Script\Util\VfxController.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\External\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
