@@ -93,7 +93,7 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
                 var mon = obj.GetComponent<MonsterController>();
                 mon.Type = type;
                 return mon;
-            });
+            }); 
             m_monsterPool.Add(type, pool);
         }
         /*m_monsterPool = new GameObjectPool<MonsterController>(10, () =>

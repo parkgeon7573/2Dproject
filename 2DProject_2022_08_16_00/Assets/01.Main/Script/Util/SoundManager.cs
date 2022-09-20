@@ -42,7 +42,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     public bool IsPlayingBGM { get { return m_audio[(int)AudioType.BGM].isPlaying; } }
     // Start is called before the first frame update
 
-    protected override void OnStart()
+    protected override void OnAwake()
     {
         m_audio = new AudioSource[(int)AudioType.Max];
         m_audio[(int)AudioType.BGM] = gameObject.AddComponent<AudioSource>();
