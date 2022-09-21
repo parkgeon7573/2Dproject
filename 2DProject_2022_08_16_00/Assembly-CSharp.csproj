@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\01.Main\Script\Game\BGController.cs" />
+    <Compile Include="Assets\01.Main\Script\Game\GameUIManager.cs" />
     <Compile Include="Assets\01.Main\Script\Game\HeroController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\InGameItemController.cs" />
     <Compile Include="Assets\01.Main\Script\Game\MonsterController.cs" />
@@ -237,6 +238,7 @@
     <None Include="Assets\External\NGUI\Examples\Shaders\Refractive.shader" />
     <None Include="Assets\External\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
     <None Include="Assets\External\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
+    <None Include="Assets\ImageFont\ImageFont.fnt" />
     <None Include="Assets\External\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
     <None Include="Assets\External\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
     <None Include="Assets\External\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
