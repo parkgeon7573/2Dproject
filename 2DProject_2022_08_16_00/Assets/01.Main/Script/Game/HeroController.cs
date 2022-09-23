@@ -9,12 +9,15 @@ public class HeroController : MonoBehaviour
     [SerializeField]
     GameObject m_fxMagnetObj;
     [SerializeField]
+    GameObject m_fxInvincibleObj;
+    [SerializeField]
     GameObject m_projectilePrefab;
     [SerializeField]
     Transform m_firepos;
     [SerializeField]
     Camera m_mainCamera;
     Rigidbody2D m_rigidbody;
+    Animator m_animator;
     Vector2 m_dir;
     [SerializeField]
     float m_speed = 2f;
@@ -25,6 +28,20 @@ public class HeroController : MonoBehaviour
     public void SetMagnetEffect(bool active)
     {
         m_fxMagnetObj.SetActive(active);
+    }
+    public void SetInvincibleEffect(bool active)
+    {
+        m_fxInvincibleObj.SetActive(active);
+        if (active)
+        {
+            CancelInvoke("CreateProjectile");
+            m_animator.Play("Invincible", 0, 0f);
+        }
+        else
+        {
+            InvokeRepeating("CreateProjectile", 1f, 0.1f);
+            m_animator.Play("Idle", 0, 0f);
+        }
     }
     public void RemoveProjectile(ProjectileController projectile)
     {
@@ -51,6 +68,7 @@ public class HeroController : MonoBehaviour
     {
         m_mainCamera = Camera.main;
         m_rigidbody = GetComponent<Rigidbody2D>();
+        m_animator = GetComponent<Animator>();
         InvokeRepeating("CreateProjectile", 1f, 0.1f);
         m_projectilePool = new GameObjectPool<ProjectileController>(9, () =>
         {
@@ -61,6 +79,7 @@ public class HeroController : MonoBehaviour
             return projectile;
         });
         SetMagnetEffect(false);
+        SetInvincibleEffect(false);
     }
     // Update is called once per frame
     void Update()

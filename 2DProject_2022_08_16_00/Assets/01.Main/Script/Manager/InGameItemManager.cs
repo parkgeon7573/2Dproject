@@ -21,7 +21,8 @@ public class InGameItemManager : SingletonMonoBehaviour<InGameItemManager>
     GameObjectPool<InGameItemController> m_itemPool;
     [SerializeField]
     List<Sprite> m_iconSprites;
-    int[] m_itemTable = { 91, 3, 2, 1, 1, 2 };
+    
+    int[] m_itemTable = { 51, 3, 2, 1, 41, 2 };
     float[] m_itemTable2 = { 91.0f, 3f, 2.5f, 0.8f, 0.5f, 2.2f };
     public void RemoveItem(InGameItemController item)
     {
@@ -30,11 +31,11 @@ public class InGameItemManager : SingletonMonoBehaviour<InGameItemManager>
     }
     public void CreateItem(Vector3 pos)
     {
-        var type = (ItemType)Util.GetPriority(m_itemTable2);//(ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
+        var type = (ItemType)Util.GetPriority(m_itemTable);//(ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
 
         var item = m_itemPool.Get();
         item.gameObject.SetActive(true);
-        item.SetItem(pos, m_hero.transform.position, type, m_iconSprites[(int)type]);
+        item.SetItem(pos, m_hero, type, m_iconSprites[(int)type]);
     }
     // Start is called before the first frame update
     protected override void OnStart()

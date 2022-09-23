@@ -19,8 +19,16 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
     List<MonsterController> m_monsterList = new List<MonsterController>();
     Dictionary<MonsterType,GameObjectPool<MonsterController>> m_monsterPool = new Dictionary<MonsterType, GameObjectPool<MonsterController>>();
     Vector2 m_startPos = new Vector2(-2.7f, 6f);
+    float m_scale = 1f;
     float m_posGap = 1.35f;
     uint m_lineCount;
+    public float Scale { get { return m_scale; } }
+    public void ResetCreateMonster(float scale)
+    {
+        CancelInvoke("CreateMonsters");
+        InvokeRepeating("CreateMonsters", 1f, 5f / scale);
+        m_scale = scale;
+    }
     public void RemoveMonsters(uint line)
     {
         for(int i = 0; i < m_monsterList.Count; i++)

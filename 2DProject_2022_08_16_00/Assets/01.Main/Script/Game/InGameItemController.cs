@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameItemController : MonoBehaviour
-{
+{   
+    HeroController m_hero;
     [SerializeField]
     InGameItemManager.ItemType m_type;
     [SerializeField]
@@ -26,10 +27,14 @@ public class InGameItemController : MonoBehaviour
     static float m_maxDuration = 2f;
     static float m_maxDist = 14.5f;
     float m_angle;
+    bool m_isMagnet;
+    float m_magnetPower = 12f;
     public InGameItemManager.ItemType Type { get { return m_type; } private set { m_type = value; } }
-    public void SetItem(Vector3 pos, Vector3 target, InGameItemManager.ItemType type, Sprite icon)
+    public void SetItem(Vector3 pos, HeroController target, InGameItemManager.ItemType type, Sprite icon)
     {
-        var dir = (target - pos);
+        var dir = (target.transform.position - pos);
+        m_hero = target;
+        m_isMagnet = false;
         m_from = pos;
         m_to = m_from + dir.normalized * 1.5f;
         m_to.y = m_targetPosY;
@@ -55,12 +60,20 @@ public class InGameItemController : MonoBehaviour
                 break;
             case InGameItemManager.ItemType.Invincible:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_invincible);
+                GameStateManager.Instance.SetState(GameState.Invinvible);
                 break;
             case InGameItemManager.ItemType.Magnet:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_item);
                 hero.SetMagnetEffect(true);
                 break;
 
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Magnet"))
+        {
+            m_isMagnet = true;
         }
     }
     // Start is called before the first frame update
@@ -72,13 +85,20 @@ public class InGameItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_time += Time.deltaTime / m_duration;
-        var valueX = m_xCurve.Evaluate(m_time);
-        var valueY = m_yCurve.Evaluate(m_time);
-        transform.position = m_from * (1f - valueX) + m_to * valueX + Vector3.up * (valueY * m_height);
-        if(m_time > 1f)
+        if (!m_isMagnet)
         {
-            InGameItemManager.Instance.RemoveItem(this);
+            var valueX = m_xCurve.Evaluate(m_time);
+            var valueY = m_yCurve.Evaluate(m_time);
+            transform.position = m_from * (1f - valueX) + m_to * valueX + Vector3.up * (valueY * m_height);
+            m_time += Time.deltaTime / m_duration;
+            if (m_time > 1f)
+            {
+                InGameItemManager.Instance.RemoveItem(this);
+            }
+        }
+        else
+        {
+            transform.position += (m_hero.transform.position - transform.position).normalized * m_magnetPower * Time.deltaTime;
         }
         if(Type >= InGameItemManager.ItemType.Gem_Red && Type <= InGameItemManager.ItemType.Gem_Blue)
         {

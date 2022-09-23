@@ -10,6 +10,8 @@ TagManager:
   - Background_Bottom
   - Monster
   - item
+  - Magnet
+  - Invincible
   layers:
   - Default
   - TransparentFX

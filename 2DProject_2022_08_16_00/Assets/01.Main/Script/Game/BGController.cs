@@ -6,7 +6,13 @@ public class BGController : MonoBehaviour
 {
     [SerializeField]
     float m_speed = 0.1f;
+    float m_scale = 1f;
     SpriteRenderer m_sprRenderer;
+
+    public void SetSpeed(float scale)
+    {
+        m_scale = scale;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +23,7 @@ public class BGController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_sprRenderer.material.mainTextureOffset += Vector2.up * m_speed * Time.deltaTime;
+        m_sprRenderer.material.mainTextureOffset += Vector2.up * m_speed * m_scale * Time.deltaTime;
         GameUIManager.Instance.SetDistScore(m_sprRenderer.material.mainTextureOffset.y);
     }
 }

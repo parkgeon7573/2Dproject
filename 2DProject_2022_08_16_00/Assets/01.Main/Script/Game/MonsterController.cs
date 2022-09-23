@@ -17,7 +17,7 @@ public class MonsterController : MonoBehaviour
     public uint Line { get { return m_line; } set { m_line = value; } }
     public void Move()
     {
-        transform.position += m_dir * m_speed * Time.deltaTime;
+        transform.position += m_dir * m_speed * MonsterManager.Instance.Scale * Time.deltaTime;
     }
     public void SetDie()
     {
@@ -33,7 +33,10 @@ public class MonsterController : MonoBehaviour
         if (IsInvoking("SetDefaultEyes"))
             CancelInvoke("SetAngryEyes");   
         Invoke("SetDefaultEyes", 1f);
-        m_hp -= damage;
+        if (damage == -1)
+            m_hp = 0;
+        else
+            m_hp -= damage;
         if(m_hp <= 0)
         {
             if(Type == MonsterManager.MonsterType.Bomb)
@@ -66,6 +69,10 @@ public class MonsterController : MonoBehaviour
         if (collision.CompareTag("Background_Bottom"))
         {
             MonsterManager.Instance.RemoveMonster(this);
+        }
+        else if (collision.CompareTag("Invincible"))
+        {
+            SetDamage(-1);
         }
     }
     void OnEnable()
