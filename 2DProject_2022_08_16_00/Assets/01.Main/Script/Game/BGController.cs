@@ -18,5 +18,6 @@ public class BGController : MonoBehaviour
     void Update()
     {
         m_sprRenderer.material.mainTextureOffset += Vector2.up * m_speed * Time.deltaTime;
+        GameUIManager.Instance.SetDistScore(m_sprRenderer.material.mainTextureOffset.y);
     }
 }

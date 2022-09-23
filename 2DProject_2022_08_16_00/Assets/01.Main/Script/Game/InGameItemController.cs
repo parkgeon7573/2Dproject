@@ -39,23 +39,26 @@ public class InGameItemController : MonoBehaviour
         m_sprRenderer.sprite =  icon;
         transform.localRotation = Quaternion.identity;
     }
-    public void SetItemEffect()
+    public void SetItemEffect(HeroController hero)
     {
         switch (m_type)
         {
             case InGameItemManager.ItemType.Coin:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_coin);
+                GameUIManager.Instance.SetCoinCont(1);
                 break;
             case InGameItemManager.ItemType.Gem_Blue:
             case InGameItemManager.ItemType.Gem_Red:
             case InGameItemManager.ItemType.Gem_Green:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_gem);
+                GameUIManager.Instance.SetCoinCont((int)m_type * 10);
                 break;
             case InGameItemManager.ItemType.Invincible:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_invincible);
                 break;
             case InGameItemManager.ItemType.Magnet:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_item);
+                hero.SetMagnetEffect(true);
                 break;
 
         }

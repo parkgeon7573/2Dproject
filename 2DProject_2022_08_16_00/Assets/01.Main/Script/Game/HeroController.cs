@@ -7,6 +7,8 @@ public class HeroController : MonoBehaviour
 {
     GameObjectPool<ProjectileController> m_projectilePool;
     [SerializeField]
+    GameObject m_fxMagnetObj;
+    [SerializeField]
     GameObject m_projectilePrefab;
     [SerializeField]
     Transform m_firepos;
@@ -19,6 +21,11 @@ public class HeroController : MonoBehaviour
     bool m_isDrag;
     Vector3 m_startPos;
     Vector3 m_prevPos;
+
+    public void SetMagnetEffect(bool active)
+    {
+        m_fxMagnetObj.SetActive(active);
+    }
     public void RemoveProjectile(ProjectileController projectile)
     {
         projectile.gameObject.SetActive(false);
@@ -36,7 +43,7 @@ public class HeroController : MonoBehaviour
         if (collision.CompareTag("item"))
         {
             var item = collision.GetComponent<InGameItemController>();
-            item.SetItemEffect();
+            item.SetItemEffect(this);
             InGameItemManager.Instance.RemoveItem(item);
         }
     }
@@ -53,6 +60,7 @@ public class HeroController : MonoBehaviour
             projectile.InitProjectile(this);
             return projectile;
         });
+        SetMagnetEffect(false);
     }
     // Update is called once per frame
     void Update()
