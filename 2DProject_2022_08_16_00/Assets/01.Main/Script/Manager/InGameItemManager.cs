@@ -31,7 +31,11 @@ public class InGameItemManager : SingletonMonoBehaviour<InGameItemManager>
     }
     public void CreateItem(Vector3 pos)
     {
-        var type = (ItemType)Util.GetPriority(m_itemTable);//(ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
+        ItemType type;
+        do
+        {
+            type = (ItemType)Util.GetPriority(m_itemTable);//(ItemType)Random.Range((int)ItemType.Coin, (int)ItemType.Max);
+        } while (GameStateManager.Instance.GetState() == GameState.Invinvible && type == ItemType.Invincible);
 
         var item = m_itemPool.Get();
         item.gameObject.SetActive(true);

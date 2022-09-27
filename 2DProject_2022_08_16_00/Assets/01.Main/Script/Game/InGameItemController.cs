@@ -60,11 +60,11 @@ public class InGameItemController : MonoBehaviour
                 break;
             case InGameItemManager.ItemType.Invincible:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_invincible);
-                GameStateManager.Instance.SetState(GameState.Invinvible);
+                hero.SetBuff(BuffType.Invincible);
                 break;
             case InGameItemManager.ItemType.Magnet:
                 SoundManager.Instance.PlaySFX(SoundManager.SfxList.get_item);
-                hero.SetMagnetEffect(true);
+                hero.SetBuff(BuffType.Magnet);
                 break;
 
         }

@@ -15,6 +15,8 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     BGController m_bgCtr;
     [SerializeField]
     HeroController m_hero;
+    [SerializeField]
+    CameraShake m_cameraShake;
     GameState m_state;
     public void SetState(GameState state)
     {
@@ -22,15 +24,24 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
         switch (state)
         {
             case GameState.Normal:
-                 break;
+                m_bgCtr.SetSpeed(1f);
+                m_hero.SetInvincibleEffect(false);
+                MonsterManager.Instance.ResetCreateMonster(1f);
+                break;
             case GameState.Invinvible:
-                m_bgCtr.SetSpeed(5f);
+                m_cameraShake.Shake();
+                m_bgCtr.SetSpeed(6f);
                 m_hero.SetInvincibleEffect(true);
                 MonsterManager.Instance.ResetCreateMonster(5f);
                 break;
             case GameState.Result:
                 break;
         }
+    }
+
+    public GameState GetState()
+    {
+        return m_state;
     }
     // Start is called before the first frame update
     protected override void OnStart()

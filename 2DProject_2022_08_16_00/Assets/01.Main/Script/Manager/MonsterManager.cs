@@ -26,7 +26,7 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
     public void ResetCreateMonster(float scale)
     {
         CancelInvoke("CreateMonsters");
-        InvokeRepeating("CreateMonsters", 1f, 5f / scale);
+        InvokeRepeating("CreateMonsters", 1f, 4f / scale);
         m_scale = scale;
     }
     public void RemoveMonsters(uint line)
@@ -112,7 +112,7 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
             var mon = obj.GetComponent<MonsterController>();
             return mon; 
         });*/
-        InvokeRepeating("CreateMonsters", 2f, 5f);
+        InvokeRepeating("CreateMonsters", 2f, 4f);
     }
     
 

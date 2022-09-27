@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
+    [SerializeField]
+    BuffController m_buffCtr;
     GameObjectPool<ProjectileController> m_projectilePool;
     [SerializeField]
     GameObject m_fxMagnetObj;
@@ -25,6 +27,10 @@ public class HeroController : MonoBehaviour
     Vector3 m_startPos;
     Vector3 m_prevPos;
 
+    public void SetBuff(BuffType buff)
+    {
+        m_buffCtr.SetBuff(buff);
+    }
     public void SetMagnetEffect(bool active)
     {
         m_fxMagnetObj.SetActive(active);
@@ -39,7 +45,7 @@ public class HeroController : MonoBehaviour
         }
         else
         {
-            InvokeRepeating("CreateProjectile", 1f, 0.1f);
+            InvokeRepeating("CreateProjectile", 0f, 0.1f);
             m_animator.Play("Idle", 0, 0f);
         }
     }

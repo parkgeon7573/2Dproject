@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 1583888462063719473}
   - component: {fileID: 1583888462063719478}
   m_Layer: 9
-  m_Name: 03
+  m_Name: 03.Monster_Pink
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   - {fileID: 2178821842907839383}
   - {fileID: 1583888463008655375}
   - {fileID: 1583888462810739702}
-  m_speed: 1
+  m_speed: 3
 --- !u!50 &1583888462063719473
 Rigidbody2D:
   serializedVersion: 4

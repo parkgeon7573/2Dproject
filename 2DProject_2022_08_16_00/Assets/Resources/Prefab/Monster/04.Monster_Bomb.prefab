@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 17608169423638300}
   - component: {fileID: 17608169423638299}
   m_Layer: 9
-  m_Name: 04
+  m_Name: 04.Monster_Bomb
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   - {fileID: 862771722164887738}
   - {fileID: 17608168221291298}
   - {fileID: 17608168543463643}
-  m_speed: 1
+  m_speed: 3
 --- !u!50 &17608169423638300
 Rigidbody2D:
   serializedVersion: 4
